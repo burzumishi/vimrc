@@ -53,7 +53,7 @@ filetype plugin indent on             " Automatically detect file types.
 " "}}}
 
 " Visual "{{{
-set nonumber  " Line numbers off
+set number  " Line numbers off
 set showmatch  " Show matching brackets.
 set matchtime=5  " Bracket blinking.
 set novisualbell  " No blinking
@@ -148,6 +148,11 @@ Bundle "http://github.com/thinca/vim-poslist.git"
 Bundle "http://github.com/mattn/gist-vim.git"
 Bundle "http://github.com/rstacruz/sparkup.git", {'rtp': 'vim/'}
 
+" NERDTree
+Bundle "scrooloose/nerdtree"
+Bundle 'jistr/vim-nerdtree-tabs'
+
+
 " Programming
 Bundle "jQuery"
 Bundle "rails.vim"
@@ -212,6 +217,9 @@ vnoremap // :TComment<CR>
 " Navigation
 Bundle "http://github.com/gmarik/vim-visual-star-search.git"
 
-" " }}}
+" PowerLine
+Bundle "Lokaltog/vim-powerline"
+let g:Powerline_symbols = 'fancy'
 
+" " }}}
 
