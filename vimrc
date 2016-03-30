@@ -77,7 +77,7 @@ set mousehide  " Hide mouse after chars typed
 set splitbelow
 set splitright
 
-colorscheme grb256
+colorscheme evening
 " "}}}
 
 
@@ -144,14 +144,14 @@ call vundle#begin()
 
 " trying this 
 Plugin 'YankRing.vim'
-Plugin 'http://github.com/thinca/vim-quickrun.git'
-Plugin 'http://github.com/thinca/vim-poslist.git'
-Plugin 'http://github.com/mattn/gist-vim.git'
-Plugin 'http://github.com/rstacruz/sparkup.git', {'rtp': 'vim/'}
+Plugin 'thinca/vim-quickrun'
+Plugin 'thinca/vim-poslist'
+Plugin 'mattn/gist-vim'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " NERDTree
 Plugin 'scrooloose/nerdtree'
-" Bundle 'jistr/vim-nerdtree-tabs'
+" Plugin 'jistr/vim-nerdtree-tabs'
 
 
 " Programming
@@ -159,7 +159,8 @@ Plugin 'jQuery'
 Plugin 'rails.vim'
 
 " Snippets
-Plugin 'http://github.com/gmarik/snipmate.vim.git'
+" Plugin 'gmarik/snipmate.vim'
+Plugin 'honza/vim-snippets'
 
 " Syntax highlight
 Plugin 'cucumber.zip'
@@ -216,7 +217,7 @@ nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
 " Navigation
-Plugin 'http://github.com/gmarik/vim-visual-star-search.git'
+Plugin 'gmarik/vim-visual-star-search'
 
 " FANCY Status Line
 
