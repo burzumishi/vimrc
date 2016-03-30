@@ -49,11 +49,10 @@ set cinoptions=:s,ps,ts,cs
 set cinwords=if,else,while,do,for,switch,case
 
 syntax on               " enable syntax
-filetype plugin indent on             " Automatically detect file types.
 " "}}}
 
 " Visual "{{{
-set nonumber  " Line numbers off
+set number  " Line numbers off
 set showmatch  " Show matching brackets.
 set matchtime=5  " Bracket blinking.
 set novisualbell  " No blinking
@@ -78,7 +77,7 @@ set mousehide  " Hide mouse after chars typed
 set splitbelow
 set splitright
 
-colorscheme default
+colorscheme grb256
 " "}}}
 
 
@@ -135,47 +134,54 @@ map <silent> <F12> :set invlist<CR>
 map <silent> <LocalLeader>2h :runtime! syntax/2html.vim<CR> 
 " " }}}
 
+filetype off                  " required
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Plugins " {{{
-call vundle#rc()
+" call vundle#rc()
 
 " trying this 
-Bundle "YankRing.vim"
-Bundle "http://github.com/thinca/vim-quickrun.git"
-Bundle "http://github.com/thinca/vim-poslist.git"
-Bundle "http://github.com/mattn/gist-vim.git"
-Bundle "http://github.com/rstacruz/sparkup.git", {'rtp': 'vim/'}
+Plugin 'YankRing.vim'
+Plugin 'http://github.com/thinca/vim-quickrun.git'
+Plugin 'http://github.com/thinca/vim-poslist.git'
+Plugin 'http://github.com/mattn/gist-vim.git'
+Plugin 'http://github.com/rstacruz/sparkup.git', {'rtp': 'vim/'}
+
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+" Bundle 'jistr/vim-nerdtree-tabs'
+
 
 " Programming
-Bundle "jQuery"
-Bundle "rails.vim"
+Plugin 'jQuery'
+Plugin 'rails.vim'
 
 " Snippets
-Bundle "http://github.com/gmarik/snipmate.vim.git"
+Plugin 'http://github.com/gmarik/snipmate.vim.git'
 
 " Syntax highlight
-Bundle "cucumber.zip"
-Bundle "Markdown"
+Plugin 'cucumber.zip'
+Plugin 'Markdown'
 
 " Git integration
-Bundle "git.zip"
-Bundle "fugitive.vim"
+Plugin 'git.zip'
+Plugin 'fugitive.vim'
 
 " (HT|X)ml tool
-Bundle "ragtag.vim"
+Plugin 'ragtag.vim'
 
 " Utility
-Bundle "repeat.vim"
-Bundle "surround.vim"
-Bundle "SuperTab"
-Bundle "file-line"
-Bundle "Align"
+Plugin 'repeat.vim'
+Plugin 'surround.vim'
+Plugin 'SuperTab'
+Plugin 'file-line'
+Plugin 'Align'
 
 " FuzzyFinder
-Bundle "L9"
-Bundle "FuzzyFinder"
+Plugin 'L9'
+Plugin 'FuzzyFinder'
 
 let g:fuf_modesDisable = [] " {{{
 nnoremap <silent> <LocalLeader>h :FufHelp<CR>
@@ -193,25 +199,68 @@ nnoremap <silent> <LocalLeader>9  :FufTaggedFile<CR>
 " " }}}
 
 " Zoomwin
-Bundle "ZoomWin"
+Plugin 'ZoomWin'
 noremap <LocalLeader>o :ZoomWin<CR>
 vnoremap <LocalLeader>o <C-C>:ZoomWin<CR>
 inoremap <LocalLeader>o <C-O>:ZoomWin<CR>
 noremap <C-W>+o :ZoomWin<CR>
 
 " Ack
-Bundle "ack.vim"
+Plugin 'ack.vim'
 noremap <LocalLeader># "ayiw:Ack <C-r>a<CR>
 vnoremap <LocalLeader># "ay:Ack <C-r>a<CR>
 
 " tComment
-Bundle "tComment"
+Plugin 'tComment'
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
 " Navigation
-Bundle "http://github.com/gmarik/vim-visual-star-search.git"
+Plugin 'http://github.com/gmarik/vim-visual-star-search.git'
+
+" FANCY Status Line
+
+" PowerLine
+" Plugin 'Lokaltog/vim-powerline'
+" let g:Powerline_symbols = 'fancy'
+
+" AirLine
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+let g:airline_section_b = '%{strftime("%c")}'
+let g:airline_section_y = 'BN: %{bufnr("%")}'
+
+let g:airline#extensions#tabline#enabled = 1
+
+" Syntastic
+Plugin 'scrooloose/syntastic'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+filetype plugin indent on    " required
+
+" To ignore plugin indent changes, instead use: filetype plugin on
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 " " }}}
 
-
+autocmd vimenter * NERDTree
