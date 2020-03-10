@@ -2,7 +2,7 @@
 set nocompatible  " disable vi compatibility.
 set history=256  " Number of things to remember in history.
 set autowrite  " Writes on make/shell commands
-set autoread  
+set autoread
 set timeoutlen=250  " Time to wait after ESC (default causes an annoying delay)
 set clipboard+=unnamed  " Yanks go on clipboard instead.
 set pastetoggle=<F10> "  toggle between paste and normal: for 'safer' pasting from keyboard
@@ -23,7 +23,7 @@ set hidden " The current buffer can be put to the background without writing to 
 " Match and search
 set hlsearch    " highlight search
 set ignorecase  " Do case in sensitive matching with
-set smartcase		" be sensitive when there's a capital letter
+set smartcase	        " be sensitive when there's a capital letter
 set incsearch   "
 " "}}}
 
@@ -33,7 +33,7 @@ set fo-=r " Do not automatically insert a comment leader after an enter
 set fo-=t " Do no auto-wrap text using textwidth (does not apply to comments)
 
 set nowrap
-set textwidth=0		" Don't wrap lines by default
+set textwidth=0	" Don't wrap lines by default
 set wildmode=longest,list " At command line, complete longest common string, then list alternatives.
 set backspace=indent,eol,start	" more powerful backspacing
 
@@ -69,7 +69,7 @@ set listchars=tab:·\ ,eol:¶,trail:·,extends:»,precedes:« " Unprintable char
 set foldenable " Turn on folding
 set foldmethod=marker " Fold on the marker
 set foldlevel=100 " Don't autofold anything (but I can still fold manually)
-set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds 
+set foldopen=block,hor,mark,percent,quickfix,tag " what movements open folds
 
 set mouse-=a   " Disable mouse
 set mousehide  " Hide mouse after chars typed
@@ -77,7 +77,6 @@ set mousehide  " Hide mouse after chars typed
 set splitbelow
 set splitright
 
-colorscheme evening
 " "}}}
 
 
@@ -99,19 +98,19 @@ nnoremap <silent> <LocalLeader>rt :tabnew ~/.vim/vimrc<CR>
 nnoremap <silent> <LocalLeader>re :e ~/.vim/vimrc<CR>
 nnoremap <silent> <LocalLeader>rd :e ~/.vim/ <CR>
 
-" Tabs 
+" Tabs
 nnoremap <silent> <LocalLeader>[ :tabprev<CR>
 nnoremap <silent> <LocalLeader>] :tabnext<CR>
 
-" Duplication 
+" Duplication
 vnoremap <silent> <LocalLeader>= yP
 nnoremap <silent> <LocalLeader>= YP
 
 " Buffers
 nnoremap <silent> <LocalLeader>- :bd<CR>
 
-" Split line(opposite to S-J joining line) 
-nnoremap <silent> <C-J> gEa<CR><ESC>ew 
+" Split line(opposite to S-J joining line)
+nnoremap <silent> <C-J> gEa<CR><ESC>ew
 
 " map <silent> <C-W>v :vnew<CR>
 " map <silent> <C-W>s :snew<CR>
@@ -128,10 +127,10 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
 " show/Hide hidden Chars
-map <silent> <F12> :set invlist<CR>     
+map <silent> <F12> :set invlist<CR>
 
 " generate HTML version current buffer using current color scheme
-map <silent> <LocalLeader>2h :runtime! syntax/2html.vim<CR> 
+map <silent> <LocalLeader>2h :runtime! syntax/2html.vim<CR>
 " " }}}
 
 filetype off                  " required
@@ -142,7 +141,7 @@ call vundle#begin()
 " Plugins " {{{
 " call vundle#rc()
 
-" trying this 
+" trying this
 Plugin 'YankRing.vim'
 Plugin 'thinca/vim-quickrun'
 Plugin 'thinca/vim-poslist'
@@ -152,14 +151,14 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 " Plugin 'jistr/vim-nerdtree-tabs'
-
+Plugin 'xuyuanp/nerdtree-git-plugin'
 
 " Programming
 Plugin 'jQuery'
 Plugin 'rails.vim'
 
 " Snippets
-" Plugin 'gmarik/snipmate.vim'
+"Plugin 'gmarik/snipmate.vim'
 Plugin 'honza/vim-snippets'
 
 " Syntax highlight
@@ -194,9 +193,9 @@ nnoremap <silent> <LocalLeader>$  :FufDir<CR>
 nnoremap <silent> <LocalLeader>5  :FufChangeList<CR>
 nnoremap <silent> <LocalLeader>6  :FufMruFile<CR>
 nnoremap <silent> <LocalLeader>7  :FufLine<CR>
-nnoremap <silent> <LocalLeader>8  :FufBookmark<CR> 
+nnoremap <silent> <LocalLeader>8  :FufBookmark<CR>
 nnoremap <silent> <LocalLeader>*  :FuzzyFinderAddBookmark<CR><CR>
-nnoremap <silent> <LocalLeader>9  :FufTaggedFile<CR> 
+nnoremap <silent> <LocalLeader>9  :FufTaggedFile<CR>
 " " }}}
 
 " Zoomwin
@@ -222,29 +221,47 @@ Plugin 'gmarik/vim-visual-star-search'
 " FANCY Status Line
 
 " PowerLine
-" Plugin 'Lokaltog/vim-powerline'
-" let g:Powerline_symbols = 'fancy'
+Plugin 'powerline/powerline'
+let g:powerline_symbols = 'fancy'
+let g:powerline_pycmd="py"
 
 " AirLine
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 
-let g:airline_section_b = '%{strftime("%c")}'
-let g:airline_section_y = 'BN: %{bufnr("%")}'
-
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline_section_b = '%{strftime("%c")}'
+"let g:airline_section_y = 'BN: %{bufnr("%")}'
+"let g:airline#extensions#tabline#enabled = 1
 
 " Syntastic
 Plugin 'scrooloose/syntastic'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Theme plugins
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'joshdick/onedark.vim'
+Plugin 'drewtempelmeyer/palenight.vim'
+Plugin 'xoria256.vim'
+"Plugin 'dracula/dracula-theme'
+Plugin 'kyoz/purify'
+
+" BASH plugins
+Plugin 'bash-support.vim'
+
+" Indent Plugin
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -265,3 +282,13 @@ filetype plugin indent on    " required
 " " }}}
 
 autocmd vimenter * NERDTree
+" Jump to the main window.
+autocmd vimenter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+colorscheme onedark
